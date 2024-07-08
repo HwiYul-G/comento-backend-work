@@ -3,13 +3,13 @@
 
 ## 할 일 목록
 - [x] Github 계정 생성: 기존에 있는 것을 사용
-- [] DBeaver Community 설치 및 Connection
+- [X] DBeaver Community 설치 및 Connection
 - [x] IntelliJ Community 설치
 - [x] JDK 설치
   - 기존에 있는 것이 `Oracle OpenJdk 17.0.10`
   - IntelliJ Community를 통해 `Azul 11.`으로 설치
 - [x] 스프링 프로젝트 생성 및 MVC 환경 설정 + API PING
-- [] datasource와 mybatis 연동
+- [x] datasource와 mybatis 연동 및 mvc를 적용한 실제 코드로 동작 확인
 
 ## JDK 설치 방법
 1. [Oracle JDK 17 다운로드 링크](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)에 가서 자신의 OS에 맞는 것을 설치
@@ -55,7 +55,8 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
     - 아래의 `server host`를 자신의 호스트 이름으로 수정한다.
    <br>
    <img src="docs/images/dbeaver-connection3.png" width="400" height="300"/>
-
+4. Test Connection 버튼 클릭시 결과
+   <img src="docs/images/DBeaver-connection.png" width="" height="" />
 ## 스프링 프로젝트 생성 및 MVC 환경 설정 + API PING
 ### 프로젝트 생성 및 디렉토리 구조 잡기
 - `AZulu 11.0.23`의 `web-app` 프로젝트 생성
@@ -82,11 +83,9 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
   - 별도의 DB 연결 없이 데이터를 스스로 만들어서 출력하게 함
 - [코드 작성 커밋 내역](https://github.com/HwiYul-G/comento-backend-work/commit/91b271afb43c521b2170e596614b6b978851d55b)
 #### Jetty 실행 설정
-<img src="./docs/images/run-configuration1.png" width="300" height="100"/>
-<br>
-<img src="./docs/images/run-config2.png" width="100" height="200"/>
-<br>
-<img src="./docs/images/run-config3.png" width="400" height="300"/>
+|1|2|3|
+|:--:|:--:|:--:|
+|<img src="./docs/images/run-configuration1.png" width="300" height="100"/>|<img src="./docs/images/run-config2.png" width="100" height="200"/>|<img src="./docs/images/run-config3.png" width="400" height="300"/>|
 
 #### 실행 테스트
 - `Run` 버튼 클릭 혹은 `Shift + F10` 단축키
@@ -94,9 +93,53 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
 - `localhost:8090/ping`  
 <img src="./docs/images/localhost8090Result.png" width="300" height="150"/>
 
-## datasource & mybatis 연동
+## datasource & mybatis 연동 + 실제 코드로 동작 확인
+### datasource & mybatis 연동
+1. `pom.xml`에 관련 dependencies 추가: [mybatis와 mariaDB, junit 의존성 추가](https://github.com/HwiYul-G/comento-backend-work/commit/02a57305c91613514c98e18c437af215ab1ccf74)
+2. datasource xml 정의(`applicationContext-datasource.xml`): [연결할 데이터베이스 정보 정의](https://github.com/HwiYul-G/comento-backend-work/commit/8f6dd2b71dbdb70fced5ed55049e13d102a85b8b)
+3. `applicationContext-webapp.xml`에 datasource xml을 import: [연결할 데이터베이스 정보를 웹앱에서 사용할 수 있게 bean으로 등록](https://github.com/HwiYul-G/comento-backend-work/commit/f07878e7264accf7c4db4ad8211029f6e2b79e17)
+4. mapper 경로와 `test-mapper.xml` 추가: [테스트 명령어를 mapper에 등록](https://github.com/HwiYul-G/comento-backend-work/commit/a76a7271b6dbf3b2e4d95de7ab213d27bc4332be)
+### 실제 코드로 동작 확인
+1. dao 인터페이스 작성: [HomeDao 커밋](https://github.com/HwiYul-G/comento-backend-work/commit/976419293c6680dfda0253a845b3bc2989f14d3d)
+2. dao 구현체 작성: [HomeDaoImpl 커밋](https://github.com/HwiYul-G/comento-backend-work/commit/466e0952787e56d82dd5d4cfd95a05f4fa3108ad)
+3. service 작성: [HomeService 커밋](https://github.com/HwiYul-G/comento-backend-work/commit/c828cc3d3f2439cbb97c090c0121115920a58554)
+4. controller 작성: [HomeController 커밋](https://github.com/HwiYul-G/comento-backend-work/commit/af984e40b15a21d60cb11c8ecd5eab199234f6f0)
 
+<img src="./docs/images/relationship.jpg" width="400" height="200"/>
 
 ## 참고 자료
 - [JDK 설치 & 환경 변수 설정하기](https://ziszini.tistory.com/103) : 누군가의 블로그인데 이미지가 있어서 글로 나열한 것보다 보기 좋습니다.
 - [코멘토 IT 대기업 현업 개발자와 함께하는 백엔드 개발 실무](https://comento.kr/edu/learn/ITSW/IT-G489)에서 나누어 주신 자료들
+  - 자료는 비공개이므로 해당 직무부트캠프 링크로 연결됩니다.
+
+# 학습 내용
+## Servlets
+- 동적 웹 페이지(요청에 따라 콘텐츠 생성, 시간에 따른 변화 등)을 생성할 수 있음
+- Java Servlet은 java 지원 웹/앱 서버에서 실행되는 java 프로그램
+  - 서버에서 얻은 복잡한 요청 처리
+  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240305120707/Servlets_architecture-768.png" width="200" height="200" />
+- 매 요청마다 프로세스를 생성하고 파괴하는 CGI(Common Gateway Interface)의 한계를 해결함
+
+## JSP(Jakarta Server Pages)
+- 웹 애플리케이션을 만드는 서버 측 기술
+- 동적 웹 '콘텐츠' 제작
+- HTML 태그와 JSP 태그로 구성
+  - JSP 태그를 이용해 Java 코드를 HTML에 삽입
+
+## Apache Tomcat와 Eclipse Jetty
+- java로 applications을 실행하기 위해 사용하는 server
+
+## JDBC
+database와 통신하기 위해 사용
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20200229213833/Architecture-of-JDBC2.jpg" width="400" height="400"/>
+
+## MyBatis
+
+
+
+## 참고자료
+- [Java Servlet](https://www.geeksforgeeks.org/introduction-java-servlets/)
+- [JSP](https://www.geeksforgeeks.org/introduction-to-jsp/?ref=lbp)
+- [Apache Tomcat vs. Eclipse Jetty](https://www.geeksforgeeks.org/apache-tomcat-vs-eclipse-jetty/)
+- [JDBC](https://www.geeksforgeeks.org/introduction-to-jdbc/)
+- [MyBatis](https://mybatis.org/mybatis-3/)
