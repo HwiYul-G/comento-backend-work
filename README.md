@@ -67,7 +67,6 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
     - java 디렉토리 생성 및 경로 설정
     - 그 하위에 `com.demo.devfun`이란 패키지 생성
     - 패키지 하위에 controller, dto, dao, service 디렉토리 생성
-    <br>
     <img src="docs/images/directories-structure.png" width="300" height="200"/>
 
 ### Dependency & jetty build 추가
@@ -94,6 +93,9 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
 <img src="./docs/images/jetty-running.png" width="400" height="100"/>
 - `localhost:8090/ping`  
 <img src="./docs/images/localhost8090Result.png" width="300" height="150"/>
+
+## datasource & mybatis 연동
+
 
 ## 참고 자료
 - [JDK 설치 & 환경 변수 설정하기](https://ziszini.tistory.com/103) : 누군가의 블로그인데 이미지가 있어서 글로 나열한 것보다 보기 좋습니다.
