@@ -68,7 +68,7 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
     - java 디렉토리 생성 및 경로 설정
     - 그 하위에 `com.demo.devfun`이란 패키지 생성
     - 패키지 하위에 controller, dto, dao, service 디렉토리 생성
-    <img src="docs/images/directories-structure.png" width="300" height="200"/>
+    <img src="./images/directories-structure.png" width="300" height="200"/>
 
 ### Dependency & jetty build 추가
 - [pom.xml에 dependency와 jetty build 추가 커밋 내역](https://github.com/HwiYul-G/comento-backend-work/commit/02d54f164dc3851b452aef570d6896ba9e7d22a9)
