@@ -131,10 +131,10 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
 
 ## JDBC
 database와 통신하기 위해 사용
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20200229213833/Architecture-of-JDBC2.jpg" width="400" height="400"/>
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20200229213833/Architecture-of-JDBC2.jpg" width="300" height="200"/>
 
 ## MyBatis
-
+![image](https://terasolunaorg.github.io/guideline/5.1.1.RELEASE/en/_images/DataAccessMyBatis3Scope.png)
 
 
 ## 참고자료
@@ -142,4 +142,5 @@ database와 통신하기 위해 사용
 - [JSP](https://www.geeksforgeeks.org/introduction-to-jsp/?ref=lbp)
 - [Apache Tomcat vs. Eclipse Jetty](https://www.geeksforgeeks.org/apache-tomcat-vs-eclipse-jetty/)
 - [JDBC](https://www.geeksforgeeks.org/introduction-to-jdbc/)
-- [MyBatis](https://mybatis.org/mybatis-3/)
+- [MyBatis 자료1](https://mybatis.org/mybatis-3/)
+- [MyBatis 자료2](https://terasolunaorg.github.io/guideline/5.1.1.RELEASE/en/ArchitectureInDetail/DataAccessMyBatis3.html)
