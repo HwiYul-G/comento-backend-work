@@ -1,7 +1,7 @@
 # 1week
 스프링 환경을 구축하고, 스프링 환경 구축과 비교한다.
 
-### 할 일 목록
+## 할 일 목록
 - [x] Github 계정 생성: 기존에 있는 것을 사용
 - [] DBeaver Community 설치 및 Connection
 - [x] IntelliJ Community 설치
@@ -9,7 +9,7 @@
   - 기존에 있는 것이 `Oracle OpenJdk 17.0.10`
   - IntelliJ Community를 통해 `Azul 11.`으로 설치
 - [x] 스프링 프로젝트 생성 및 MVC 환경 설정 + API PING
-
+- [] datasource와 mybatis 연동
 
 ## JDK 설치 방법
 1. [Oracle JDK 17 다운로드 링크](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)에 가서 자신의 OS에 맞는 것을 설치
@@ -29,9 +29,6 @@
 3. 검사
     - cmd에서 `java -version` 명령어로 버전이 잘 나오는지 확인한다.
     ![image](docs/images/java-version-checking.png)
-   
-### 궁금증
-항상 ORacle jdk만 설치했는데 이것도 회사마다? 다른 것으로 알고 있다. 무슨 차이가 있는 지 궁금
 
 ## DBeaver
 Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하나로 관리**할 수 있다.
@@ -71,15 +68,15 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
 
 ### Spring 설정을 위한 web.xml 수정 및 web 설정
 #### web.xml 수정
-![web.xml 수정 사항]()
+![web.xml 수정 커밋 내역](https://github.com/HwiYul-G/comento-backend-work/commit/3d57938c1a1b3edb2a20fe893b8fdf0a277d3fad)
 #### web 설정
-![web 설정 내역]()
+![web 설정 커밋 내역](https://github.com/HwiYul-G/comento-backend-work/commit/9a3bfd9ef61b8f10ce8205f2ec0e56526d7a38c7)
 
 ### PingController 작성 및 jetty 실행
 #### PingController 작성
 - jetty 실행 테스트를 위해서 `PingController` 를 작성한다.
   - 별도의 DB 연결 없이 데이터를 스스로 만들어서 출력하게 함
-- [코드 작성 사항]()
+- [코드 작성 커밋 내역](https://github.com/HwiYul-G/comento-backend-work/commit/91b271afb43c521b2170e596614b6b978851d55b)
 #### Jetty 실행 설정
 ![images](./docs/images/run-configuration1.png)
 ![images](./docs/images/run-config2.png)
@@ -89,6 +86,7 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
     ![images](./docs/images/jetty-running.png)
 - `localhost:8090/ping`  
     ![images](./docs/images/localhost8090Result.png)
+
 
 
 ## 참고 자료
