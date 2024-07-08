@@ -1,13 +1,14 @@
 # 1week
 스프링 환경을 구축하고, 스프링 환경 구축과 비교한다.
-## 할 일 목록
+
+### 할 일 목록
 - [x] Github 계정 생성: 기존에 있는 것을 사용
 - [] DBeaver Community 설치 및 Connection
 - [x] IntelliJ Community 설치
 - [x] JDK 설치
   - 기존에 있는 것이 `Oracle OpenJdk 17.0.10`
   - IntelliJ Community를 통해 `Azul 11.`으로 설치
-- [x] 프로젝트 생성 및 디렉터리 구조 잡기 + dependency 추가
+- [x] 스프링 프로젝트 생성 및 MVC 환경 설정 + API PING
 
 
 ## JDK 설치 방법
@@ -27,10 +28,8 @@
         - `%JAVA_HOME%\bin\`를 추가하고 확인한다.
 3. 검사
     - cmd에서 `java -version` 명령어로 버전이 잘 나오는지 확인한다.
-    ![image](./images/java-version-checking.png)
-### 참고 자료
-- [JDK 설치 & 환경 변수 설정하기](https://ziszini.tistory.com/103) : 누군가의 블로그인데 이미지가 있어서 글로 나열한 것보다 보기 좋습니다.
-
+    ![image](docs/images/java-version-checking.png)
+   
 ### 궁금증
 항상 ORacle jdk만 설치했는데 이것도 회사마다? 다른 것으로 알고 있다. 무슨 차이가 있는 지 궁금
 
@@ -50,14 +49,48 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
 
 ### Connection
 1. connection 버튼 클릭
-    ![image](./images/dbeaver-connection1.png)
+    ![image](docs/images/dbeaver-connection1.png)
 2. DB 선택
-    ![immage](./images/dbeaver-connection2.png)
+    ![immage](docs/images/dbeaver-connection2.png)
 3. 커넥션 정보 입력 및 연결
     - 아래의 `server host`를 자신의 호스트 이름으로 수정한다.
-    ![image](./images/dbeaver-connection3.png)
+    ![image](docs/images/dbeaver-connection3.png)
 
-### 참고 자료
-- 나누어 주신 pdf 참고
-- https://dev-cini.tistory.com/42
+## 스프링 프로젝트 생성 및 MVC 환경 설정 + API PING
+### 프로젝트 생성 및 디렉토리 구조 잡기
+- `AZulu 11.0.23`의 `web-app` 프로젝트 생성
+    ![image](docs/images/azulu11.png)
+    ![image](docs/images/webapp.png)
+- 디렉토리 구조 잡기
+    - java 디렉토리 생성 및 경로 설정
+    - 그 하위에 `com.demo.devfun`이란 패키지 생성
+    - 패키지 하위에 controller, dto, dao, service 디렉토리 생성
+  ![image](docs/images/directories-structure.png)
 
+### Dependency & jetty build 추가
+
+### Spring 설정을 위한 web.xml 수정 및 web 설정
+#### web.xml 수정
+![web.xml 수정 사항]()
+#### web 설정
+![web 설정 내역]()
+
+### PingController 작성 및 jetty 실행
+#### PingController 작성
+- jetty 실행 테스트를 위해서 `PingController` 를 작성한다.
+  - 별도의 DB 연결 없이 데이터를 스스로 만들어서 출력하게 함
+- [코드 작성 사항]()
+#### Jetty 실행 설정
+![images](./docs/images/run-configuration1.png)
+![images](./docs/images/run-config2.png)
+![images](./docs/images/run-config3.png)
+#### 실행 테스트
+- `Run` 버튼 클릭 혹은 `Shift + F10` 단축키
+    ![images](./docs/images/jetty-running.png)
+- `localhost:8090/ping`  
+    ![images](./docs/images/localhost8090Result.png)
+
+
+## 참고 자료
+- [JDK 설치 & 환경 변수 설정하기](https://ziszini.tistory.com/103) : 누군가의 블로그인데 이미지가 있어서 글로 나열한 것보다 보기 좋습니다.
+- [코멘토 IT 대기업 현업 개발자와 함께하는 백엔드 개발 실무](https://comento.kr/edu/learn/ITSW/IT-G489)에서 나누어 주신 자료들
