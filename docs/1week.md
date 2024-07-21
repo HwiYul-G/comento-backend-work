@@ -56,7 +56,9 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
    <br>
    <img src="./images/dbeaver-connection3.png" width="400" height="300"/>
 4. Test Connection 버튼 클릭시 결과
+   - 올바르게 연결 됨을 확인한다.
    <img src="./images/DBeaver-connection.png" width="" height="" />
+   
 ## 스프링 프로젝트 생성 및 MVC 환경 설정 + API PING
 ### 프로젝트 생성 및 디렉토리 구조 잡기
 - `AZulu 11.0.23`의 `web-app` 프로젝트 생성
@@ -83,15 +85,15 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
   - 별도의 DB 연결 없이 데이터를 스스로 만들어서 출력하게 함
 - [코드 작성 커밋 내역](https://github.com/HwiYul-G/comento-backend-work/commit/91b271afb43c521b2170e596614b6b978851d55b)
 #### Jetty 실행 설정
-|                                  1                                  |                              2                               |3|
-|:-------------------------------------------------------------------:|:------------------------------------------------------------:|:--:|
-|<img src="./images/run-configuration1.png" width="300" height="100"/>|<img src="./images/run-config2.png" width="100" height="200"/>|<img src="./images/run-config3.png" width="400" height="300"/>|
+1. 오른쪽 상단의 `Run(▶)` 버튼 옆의 `Current File`을 클릭해서 `Edit Configurations`를 클릭한다.
+2. Edit Configurations에서 왼쪽 상단의 `+`버튼을 클릭하고 `Maven`을 선택한다.
+3. Run 부분의 입력하는 곳에 아래와 같이 `jetty:run`을 입력한다.
+  <img src="./images/run-config3.png" width="400" height="300"/>
 
 #### 실행 테스트
-- `Run` 버튼 클릭 혹은 `Shift + F10` 단축키
-<img src="./images/jetty-running.png" width="400" height="100"/>
+- `Run(▶)` 버튼 클릭 혹은 `Shift + F10` 단축키
 - `localhost:8090/ping`  
-<img src="./images/localhost8090Result.png" width="300" height="150"/>
+  <img src="./images/localhost8090Result.png" width="300" height="150"/>
 
 ## datasource & mybatis 연동 + 실제 코드로 동작 확인
 ### datasource & mybatis 연동
