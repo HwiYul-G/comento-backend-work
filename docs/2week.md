@@ -2,11 +2,11 @@
 
 개정이력
 
-| 버전  |    변경일     | 변경사유 | 변경내역 |
-|:---:|:----------:|:----:|:----:|
-| 1.0 | 2024-07-13 | 최초작성 | 최초작성 |
-||            ||
-||            ||
+| 버전  |    변경일     |     변경사유     |                                                      변경내역                                                      |
+|:---:|:----------:|:------------:|:--------------------------------------------------------------------------------------------------------------:|
+| 1.0 | 2024-07-13 |     최초작성     |                                                      최초작성                                                      |
+| 1.1 | 2024-07-22 | 통일성과 단순화를 위함 | - `{org}/{yearMonth}` 순서 변경 `{yearMonth}/{org}` <br> - 로그인 수 평균과 휴일 제외 로그인 수를 로그인 api 하나로 합치고 query param으로 변경 |
+|     |            |              |                                                                                                                |
 
 ## 데이터 공통사항
 ### 부서 목록
@@ -46,24 +46,29 @@
 #### 요청url
 `rest/logins/{yearMonth}`
 
-#### Request Parameters
-|Name|Type| Description | Mandatory |  Note  |
-|:--:|:--:|:-----------:|:---------:|:------:|
-|yearMonth|string|             |     O     | 202008 |
-
+#### Request Parameter
+|      Name       |  Type   | Description | Mandatory |  Note  |
+|:---------------:|:-------:|:-----------:|:---------:|:------:|
+|    yearMonth    | string  |             |     O     | 202008 |
+|   is-average    | boolean |     평균값     |     X     |  true  |
+| exclude-holiday | boolean |  휴일 제외 여부   |     X     | false  |
+- 평균값만 true인 경우는 해당 년 월의 하루 로그인 수
+- 휴일 제외 여부만 true인 경우는 해당 년월의 휴일을 제외한 카운트 수
+- 휴일 제외 여부와 평균값 둘다 true인 경우는 해당 년월의 휴일을 제외한 평균 로그인 수
 #### Response Body
 ```json
 {
   "isSuccess": true,
   "yearMonth": "202008",
   "totCnt": 3,
+  "average": 1.2,
   "requestLog": "L"
 }
 ```
 
 ### 년월별 부서별 사용자 접속자 수
 #### 요청url
-`rest/logins/{org}/{yearMonth}`
+`rest/logins/{yearMonth}/{org}`
 
 #### Request Parameters
 |     Name     |  Type  | Description | Mandatory |  Note  |
@@ -82,40 +87,6 @@
 }
 ```
 
-### 년월별 평균 하루 로그인 수
-#### 요청url
-`rest/average-login/{yearMonth}`
-#### Request Parameters
-|     Name     |  Type  | Description | Mandatory |  Note  |
-|:------------:|:------:|:-----------:|:---------:|:------:|
-|yearMonth|string|             |     O     | 202008 |
-#### Response Body
-```json
-{
-  "isSuccess": true,
-  "yearMonth": "202008",
-  "average": 1.2,
-  "requestLog": "L"
-}
-```
-
-### 년월별 휴일을 제외한 로그인 수
-#### 요청url
-`rest/exclude-holiday-login/{yearMonth}`
-#### Request Parameters
-|     Name     |  Type  | Description | Mandatory |  Note  |
-|:------------:|:------:|:-----------:|:---------:|:------:|
-|yearMonth|string|             |     O     | 202008 |
-#### Response Body
-```json
-{
-  "isSuccess": true,
-  "yearMonth": "202008",
-  "average": 2,
-  "requestLog": "L"
-}
-```
-
 ### 년월별 게시글 작성 수
 #### 요청url
 `rest/posts/{yearMonth}`
@@ -128,14 +99,14 @@
 {
   "isSuccess": true,
   "yearMonth": "202008",
-  "average": 2,
+  "totCnt": 2,
   "requestLog": "WB"
 }
 ```
 
 ### 년월별 부서별 게시글 작성 수
 #### 요청url
-`rest/posts/{org}/{yearMonth}`
+`rest/posts/{yearMonth}/{org}`
 #### Request Parameters
 |   Name    |  Type  | Description | Mandatory |  Note  |
 |:---------:|:------:|:-----------:|:---------:|:------:|
@@ -146,7 +117,7 @@
 {
   "isSuccess": true,
   "yearMonth": "202008",
-  "average": 2,
+  "totCnt": 2,
   "requestLog": "WB",
   "team": "A"
 }
