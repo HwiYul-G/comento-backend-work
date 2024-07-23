@@ -125,6 +125,6 @@
   "yearMonth": "202008",
   "totCnt": 2,
   "requestLog": "WB",
-  "team": "A"
+  "team": "AAA"
 }
 ```
