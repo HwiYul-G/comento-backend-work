@@ -28,7 +28,7 @@
         - `%JAVA_HOME%\bin\`를 추가하고 확인한다.
 3. 검사
     - cmd에서 `java -version` 명령어로 버전이 잘 나오는지 확인한다.
-    ![image](./images/java-version-checking.png)
+    ![image](./images/1week/java-version-checking.png)
 
 ## DBeaver
 Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하나로 관리**할 수 있다.
@@ -47,30 +47,30 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
 ### Connection
 1. connection 버튼 클릭
    <br>
-    <img src="./images/dbeaver-connection1.png" width="400" height="200"/>
+    <img src="./images/1week/dbeaver-connection1.png" width="400" height="200"/>
 2. DB 선택
     <br>
-   <img src="./images/dbeaver-connection2.png" width="400" height="300" />
+   <img src="./images/1week/dbeaver-connection2.png" width="400" height="300" />
 3. 커넥션 정보 입력 및 연결
     - 아래의 `server host`를 자신의 호스트 이름으로 수정한다.
    <br>
-   <img src="./images/dbeaver-connection3.png" width="400" height="300"/>
+   <img src="./images/1week/dbeaver-connection3.png" width="400" height="300"/>
 4. Test Connection 버튼 클릭시 결과
    - 올바르게 연결 됨을 확인한다.
-   <img src="./images/DBeaver-connection.png" width="" height="" />
+   <img src="./images/1week/DBeaver-connection.png" width="" height="" />
    
 ## 스프링 프로젝트 생성 및 MVC 환경 설정 + API PING
 ### 프로젝트 생성 및 디렉토리 구조 잡기
 - `AZulu 11.0.23`의 `web-app` 프로젝트 생성
     <br>
-    <img src="./images/azulu11.png" width="500px" height="350px"/>
+    <img src="./images/1week/azulu11.png" width="500px" height="350px"/>
     <br>
-    <img src="./images/webapp.png" width="500px" height="350px"/>
+    <img src="./images/1week/webapp.png" width="500px" height="350px"/>
 - 디렉토리 구조 잡기
     - java 디렉토리 생성 및 경로 설정
     - 그 하위에 `com.demo.devfun`이란 패키지 생성
     - 패키지 하위에 controller, dto, dao, service 디렉토리 생성
-    <img src="./images/directories-structure.png" width="300" height="200"/>
+    <img src="./images/1week/directories-structure.png" width="300" height="200"/>
 
 ### Dependency & jetty build 추가
 - [pom.xml에 dependency와 jetty build 추가 커밋 내역](https://github.com/HwiYul-G/comento-backend-work/commit/02d54f164dc3851b452aef570d6896ba9e7d22a9)
@@ -88,12 +88,12 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
 1. 오른쪽 상단의 `Run(▶)` 버튼 옆의 `Current File`을 클릭해서 `Edit Configurations`를 클릭한다.
 2. Edit Configurations에서 왼쪽 상단의 `+`버튼을 클릭하고 `Maven`을 선택한다.
 3. Run 부분의 입력하는 곳에 아래와 같이 `jetty:run`을 입력한다.
-  <img src="./images/run-config3.png" width="400" height="300"/>
+  <img src="./images/1week/run-config3.png" width="400" height="300"/>
 
 #### 실행 테스트
 - `Run(▶)` 버튼 클릭 혹은 `Shift + F10` 단축키
 - `localhost:8090/ping`  
-  <img src="./images/localhost8090Result.png" width="300" height="150"/>
+  <img src="./images/1week/localhost8090Result.png" width="300" height="150"/>
 
 ## datasource & mybatis 연동 + 실제 코드로 동작 확인
 ### datasource & mybatis 연동
@@ -107,7 +107,7 @@ Debeaver는 데이터베이스 관리 툴로 **여러 데이터베이스를 하�
 3. service 작성: [HomeService 커밋](https://github.com/HwiYul-G/comento-backend-work/commit/c828cc3d3f2439cbb97c090c0121115920a58554)
 4. controller 작성: [HomeController 커밋](https://github.com/HwiYul-G/comento-backend-work/commit/af984e40b15a21d60cb11c8ecd5eab199234f6f0)
 
-<img src="./images/relationship.jpg" width="400" height="200"/>
+<img src="./images/1week/relationship.jpg" width="400" height="200"/>
 
 ## 참고 자료
 - [JDK 설치 & 환경 변수 설정하기](https://ziszini.tistory.com/103) : 누군가의 블로그인데 이미지가 있어서 글로 나열한 것보다 보기 좋습니다.
