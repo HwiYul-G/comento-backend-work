@@ -183,7 +183,7 @@ devtools.livereload.enabled=true # 파일 변화시 reload가 될 수 있도록 
     where left(ri.createDate, 6) = #{yearMonth} and requestLog='L';
     ```
     - 평균 하루 로그인 수
-       - `lastDay`: 특정 년월의 마지막 일
+       - `lastDay`: 특정 년월의 마지막 일 (service에서 자바 코드를 이용해 데이터를 넘겨준다.)
         ```sql
         select count(*) as totCnt, count(*) / #{lastDay} as average 
         from statistic9.requestInfo ri
@@ -191,6 +191,7 @@ devtools.livereload.enabled=true # 파일 변화시 reload가 될 수 있도록 
         ```
     - 휴일 제외 로그인 수
         - `holidayList`: '1, 2, 3' 같이 컴마(,)로 구분된 문자열
+        - 혹은 holiday관련 테이블이 존재하는 경우 `not in (select holiday_date from holidays)`같은 문을 이용
         ```sql
         select count(*) as totCnt
         from statistic9.requestInfo ri
