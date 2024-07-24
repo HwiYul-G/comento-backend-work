@@ -1,12 +1,12 @@
 ## RestController란?
 - spring 4.0에서 RESTful web services 생성을 간단하게 하려고 `@RestController`가 등장했다.
     - `@RestController` = `@Controller` + `@ResponseBody`
-    - `@ResponseBody` 어노테이션은 반환하는 object를 자동적으로 HttpResponse로 직렬화 한다.
+    - `@ResponseBody` 어노테이션은 반환하는 object(xml, json)를 자동적으로 HttpResponse로 직렬화 한다.
     - `@Controller`: `@Component` 클래스에 역할을 구체화한 것이고, classpath scanning을 통해 자동으로 감지한다.
-
 ### Response 보기
-```
-```
+1. List: `[{}, {}, ..., {}]`
+2. Map: `{"0": {}, "1": {}, ...}`
+3. ResponseEntity: 결과 데이터와 HTTP 상태 코드를 제어할 수 있음
 
 ### 참고자료
 - https://doublesprogramming.tistory.com/204
@@ -74,3 +74,28 @@
 ### 참고자료
 - https://dev.to/martygo/what-is-the-difference-between-a-jar-and-a-war-file-402a
 - https://www.baeldung.com/java-jar-war-packaging
+
+## Java Records
+Reocrds는 데이터를 저장하고 행동을 정의하지 않는 상황에서 클래스보다 더 나은 선택이다.
+### 데이터 저장에 레코드가 좋은 이유
+- 생성자, 게터, 세터 메소드를 별도 정의하지 않고 한 줄의 코드로 데이터 필드에 정의할 수 있다.
+    - 코드를 더 짧고, 가독성있고, 오류 발생률을 줄여준다.
+- 레코드는 `equals()`와 `hashCode()`를 내장하고 있다.
+    - value 기반으로 record instance를 비교하기 쉽게 한다.
+- record는 기본적으로 immutable하다. > 인스턴스화 된 이후 수정될 필요가 없는 클래스에 적합하다.
+### 레코드를 사용하기 좋은 상황
+1. dto
+    - 하나의 애플리케이션의 다른 부분 사이에서 데이터를 전송하는 데 사용
+    - 레코드로 보일러 플레이트 코드를 줄이고 한 줄로 작성 가능
+2. immutable objects
+3. simple value types
+4. api responses
+5. configuration settings
+### 결론
+lombok의 어노테이션과 클래스를 사용해서 레코드를 대체할 수 있다. 그렇기에 레코드가 반드시 필요한 것은 아니다.
+하지만 레코드가 있으면 더 나을 수 있다.
+1. 간결성: 속성을 가진 프로퍼티를 정의하고 한줄의 코드로 생성자를 가진다. 
+2. 불변성: 기본적으로 불변하다. 즉 생성되고나서 그 프로퍼티가 바뀌지 않는다. 버그 방지와 코드 신뢰성에 도움
+
+### 참고자료
+- https://medium.com/javarevisited/java-records-when-why-to-use-them-ebd48de637b6
