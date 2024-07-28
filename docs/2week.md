@@ -9,8 +9,14 @@
 |     |            |              |                                                                                                                |
 
 ## 데이터 공통사항
-### 부서 목록
-- EX) A팀, B팀, C팀, D팀
+### 부서 목록(HR_ORGAN)
+|HR_ORGAN| 의미|
+|:--:|:--:|
+|AAA|짱구는 못말려|
+|BBB|뽀로로와 친구들|
+|CCC|도라에몽|
+|DDD|명탐정 코난|
+
 ### request log 정보
 | request log |   의미   |
 |:-----------:|:------:|
@@ -119,6 +125,6 @@
   "yearMonth": "202008",
   "totCnt": 2,
   "requestLog": "WB",
-  "team": "A"
+  "team": "AAA"
 }
 ```
