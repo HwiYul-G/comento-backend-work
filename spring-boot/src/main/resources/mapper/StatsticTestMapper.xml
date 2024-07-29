@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.demo.comentoStatistic.dao.StatisticMapper">
+<mapper namespace="com.demo.comentoStatistic.dao.StatisticTestMapper">
     <select id="selectYearLogin" parameterType="string" resultType="YearCountDto">
         select concat('20', #{year}) as year, count(*) as totCnt
         from statistic9.requestInfo ri
