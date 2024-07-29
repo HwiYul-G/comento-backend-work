@@ -1,6 +1,6 @@
 package com.demo.comentoStatistic.controller;
 
-import com.demo.comentoStatistic.dto.YearCountDto;
+import com.demo.comentoStatistic.dto.TestYearCountDto;
 import com.demo.comentoStatistic.service.StatisticTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ public class StatisticTestController {
 
     @RequestMapping(value = "/logins/{year}", produces = "application/json")
     @ResponseBody
-    public ResponseEntity<YearCountDto> getYearLoginCount(@PathVariable("year") String year){
+    public ResponseEntity<TestYearCountDto> getYearLoginCount(@PathVariable("year") String year){
         return ResponseEntity.ok(statisticTestService.getYearLogins(year));
     }
 

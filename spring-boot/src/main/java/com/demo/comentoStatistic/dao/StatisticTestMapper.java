@@ -1,12 +1,12 @@
 package com.demo.comentoStatistic.dao;
 
-import com.demo.comentoStatistic.dto.YearCountDto;
-import com.demo.comentoStatistic.dto.YearMonthCountDto;
+import com.demo.comentoStatistic.dto.TestYearCountDto;
+import com.demo.comentoStatistic.dto.TestYearMonthCountDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface StatisticTestMapper {
 
-    YearCountDto selectYearLogin(String year);
-    YearMonthCountDto selectYearMonthLogin(String yearMonth);
+    TestYearCountDto selectYearLogin(String year);
+    TestYearMonthCountDto selectYearMonthLogin(String yearMonth);
 }
