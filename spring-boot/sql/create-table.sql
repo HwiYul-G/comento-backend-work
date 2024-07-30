@@ -20,3 +20,8 @@ ALTER TABLE statistic9.requestInfo
     ADD FOREIGN KEY(requestCode) REFERENCES statistic9.requestCode(requestCode);
 ALTER TABLE statistic9.requestInfo
     ADD FOREIGN KEY(userID) REFERENCES statistic9.user(userID);
+
+CREATE TABLE statistic9.holiday(
+   localDate varchar(10) NOT NULL PRIMARY KEY,
+   description varchar(15)
+);
