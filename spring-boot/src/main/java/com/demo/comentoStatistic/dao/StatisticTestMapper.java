@@ -1,7 +1,7 @@
 package com.demo.comentoStatistic.dao;
 
-import com.demo.comentoStatistic.dto.TestYearCountDto;
-import com.demo.comentoStatistic.dto.TestYearMonthCountDto;
+import com.demo.comentoStatistic.dto.internal.TestYearCountDto;
+import com.demo.comentoStatistic.dto.internal.TestYearMonthCountDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

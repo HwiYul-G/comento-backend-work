@@ -1,6 +1,6 @@
 package com.demo.comentoStatistic.controller;
 
-import com.demo.comentoStatistic.dto.TestYearCountDto;
+import com.demo.comentoStatistic.dto.internal.TestYearCountDto;
 import com.demo.comentoStatistic.service.StatisticTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("${spring.data.rest.base-path}/")
 public class StatisticTestController {
     @Autowired
     StatisticTestService statisticTestService;

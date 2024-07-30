@@ -1,8 +1,8 @@
 package com.demo.comentoStatistic.service;
 
 import com.demo.comentoStatistic.dao.StatisticTestMapper;
-import com.demo.comentoStatistic.dto.TestYearCountDto;
-import com.demo.comentoStatistic.dto.TestYearMonthCountDto;
+import com.demo.comentoStatistic.dto.internal.TestYearCountDto;
+import com.demo.comentoStatistic.dto.internal.TestYearMonthCountDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
