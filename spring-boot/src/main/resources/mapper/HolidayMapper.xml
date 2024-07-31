@@ -5,6 +5,15 @@
 <mapper namespace="com.demo.comentoStatistic.dao.HolidayMapper">
     <insert id="insertHoliday" parameterType="com.demo.comentoStatistic.model.Holiday">
         INSERT INTO statistic9.holiday(localDate, description)
-            VALUES (#{Holiday.localDate}, #{Holiday.description});
+            VALUES (#{localDate}, #{description});
     </insert>
+
+    <insert id="insertHolidays" parameterType="java.util.List">
+        INSERT INTO statistic9.holiday(localDate, description)
+        VALUES
+        <foreach collection="list" item="holiday" separator=",">
+            (#{holiday.localDate}, #{holiday.description})
+        </foreach>
+    </insert>
+
 </mapper>
