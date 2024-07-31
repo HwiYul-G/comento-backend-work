@@ -1,11 +1,9 @@
-package com.demo.comentoStatistic.dto;
+package com.demo.comentoStatistic.dto.internal;
 
-public record PostDeptStatsDto(
-        boolean isSuccess,
+public record LoginDeptStatsDto(
         String yearMonth,
         Long totCnt,
         String requestLog,
         String team
 ) {
-
 }

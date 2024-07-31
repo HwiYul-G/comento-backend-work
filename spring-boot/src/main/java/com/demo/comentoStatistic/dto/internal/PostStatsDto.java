@@ -1,7 +1,6 @@
-package com.demo.comentoStatistic.dto;
+package com.demo.comentoStatistic.dto.internal;
 
 public record PostStatsDto(
-        boolean isSuccess,
         String yearMonth,
         Long totCnt,
         String requestLog
