@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.comentoStatistic.dao.HolidayMapper">
+    <insert id="insertHoliday" parameterType="com.demo.comentoStatistic.model.Holiday">
+        INSERT INTO statistic9.holiday(localDate, description)
+            VALUES (#{Holiday.localDate}, #{Holiday.description});
+    </insert>
+</mapper>
