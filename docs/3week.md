@@ -134,7 +134,7 @@ devtools.livereload.enabled=true # 파일 변화시 reload가 될 수 있도록 
 
     # 시작 날짜를 변경하고 싶다면 변경
     start_date = datetime.datetime(2022, 1, 1, 0, 0)
-    end_data = datetime.datetime.now()
+    end_data = datetime.datetime.now() # 20240722 혹은 23쯤.
 
     def generate_random_date(start, end):
         return start + (end - start) * random.random()
@@ -175,30 +175,31 @@ devtools.livereload.enabled=true # 파일 변화시 reload가 될 수 있도록 
     <img src='./images/3week/db-connection-test.png' width='200' height='150'>
 
 ## API sql
+#### 아래의 예비 sql문을 실제로 mybatis와 java code로 적용하면서 문법에 맞지 않거나 더 나은 방법(동적 쿼리 등)이 있어서 실제론 변경됨.
 - **쿼리를 통해 필요한 totCnt, average 등만 찾고, 나머지 response는 service에서 추가**
 1. 년월별 사용자 접속자 수(로그인 수)
     ```sql
-    select count(*) as totCnt
+    select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestCode as requestLog
     from statistic9.requestInfo ri
-    where left(ri.createDate, 6) = #{yearMonth} and requestLog='L';
+    where left(ri.createDate, 4) = #{yearMonth} and requestLog='L';
     ```
     - 평균 하루 로그인 수
-       - `lastDay`: 특정 년월의 마지막 일 (service에서 자바 코드를 이용해 데이터를 넘겨준다.)
+       - service에서 특정 년월의 마지막 일을 구해 average를 계산해서 넣어준다.
         ```sql
-        select count(*) as totCnt, count(*) / #{lastDay} as average 
+        select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestCode as requestLog
         from statistic9.requestInfo ri
-        where left(ri.createDate, 6) = #{yearMonth} and requestLog='L';
+        where left(ri.createDate, 4) = #{yearMonth} and requestCode='L';
         ```
     - 휴일 제외 로그인 수
         - `holidayList`: '1, 2, 3' 같이 컴마(,)로 구분된 문자열
         - 혹은 holiday관련 테이블이 존재하는 경우 `not in (select holiday_date from holidays)`같은 문을 이용
         ```sql
-        select count(*) as totCnt
+        select count(*) as totCnt, requestLog
         from statistic9.requestInfo ri
         where left(ri.createDate,6)=#{yearMonth} and requestLog='L' and right(ri.createDate,2) not in (#{holidayList});
         ```
     - 휴일 제외한 평균 하루 로그인 수
-        - `lastDay`: 특정 년월의 마지막 일
+        - `lastDay`: 특정 년월의 마지막 일 (service에서 계산해서 넘겨준다.)
         - `holidayList`: '1, 2, 3' 같이 컴마(,)로 구분된 문자열
         ```sql
         select count(*) as totCnt, count(*) / #{lastDay} as average
@@ -207,19 +208,19 @@ devtools.livereload.enabled=true # 파일 변화시 reload가 될 수 있도록 
         ```
 2. 년월별 부서별 사용자 접속자 수(로그인 수)
     ```sql
-    select count(*) as totCnt
-    from statistic9.requestInfo ri inner join statistic9.user as u on userID
-    where left(ri.createDate, 6) = #{yearMonth} and requestLog='L' and u.HR_ORGAN=#{team};
+    select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestCode as requestLog, u.HR_ORGAN as team
+    from statistic9.requestInfo ri left outer join statistic9.user as u on userID
+    where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestCode='L' and u.HR_ORGAN=#{team};
     ```
 3. 년월별 게시글 작성 수
     ```sql
-    select count(*) as totCnt
+    select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestLog as requestLog
     from statistic9.requestInfo ri
-    where left(ri.createDate, 6)=#{yearMonth} and requestLog='WB';
+    where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestLog='WB';
     ```
 4. 년월별 부서별 게시글 작성 수
     ```sql
-    select count(*) as totCnt
-    from statistic9.requestInfo ri left outer join statistic9.user as u on userID
-    where left(ri.createDate, 6)=#{yearMonth} and requestLog='WB' and u.HR_ORGAN=#{team};
+    select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestLog as requestLog, u.HR_ORGAN as team
+        from statistic9.requestInfo ri left outer join statistic9.user as u on userID
+        where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestLog='WB' and u.HR_ORGAN=#{team};
     ```
