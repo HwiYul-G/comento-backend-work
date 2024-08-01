@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demo.comentoStatistic.dao.StatisticMapper">
+
+    <select id="getLoginCountByYearMonth" parameterType="map" resultType="LoginStatsDto">
+        select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestCode as requestLog
+        from statistic9.requestInfo ri
+        where concat(20, left(ri.createDate, 4)) = #{yearMonth} and requestCode='L'
+        <if test="excludeHoliday == true">
+            and concat(20, left(ri.createDate,4)) NOT IN (
+                SELECT createDate
+                from holiday as h
+                where left(h.localDate, 4)=#{yearMonth}
+            )
+            and WEEKDAY(STR_TO_DATE(ri.createDate,'%Y%m%d')) NOT IN (5, 6);
+        </if>
+    </select>
+
+    <select id="getLoginCountByYearMonthAndTeam" parameterType="map" resultType="LoginDeptStatsDto">
+        select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestCode as requestLog, u.HR_ORGAN as team
+        from statistic9.requestInfo ri left outer join statistic9.user as u on userID
+        where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestCode='L' and u.HR_ORGAN=#{team};
+    </select>
+
+    <select id="getPostCountByYearMonth" parameterType="string" resultType="PostStatsDto">
+        select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestLog as requestLog
+        from statistic9.requestInfo ri
+        where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestLog='WB';
+    </select>
+
+    <select id="getPostCountByYearMonthAndTeam" parameterType="map" resultType="PostDeptStatsDto">
+        select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestLog as requestLog, u.HR_ORGAN as team
+        from statistic9.requestInfo ri left outer join statistic9.user as u on userID
+        where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestLog='WB' and u.HR_ORGAN=#{team};
+    </select>
+</mapper>
