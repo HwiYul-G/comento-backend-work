@@ -26,6 +26,13 @@ public class ExceptionHandlerAdvice {
                 .body(errors);
     }
 
+    @ExceptionHandler(DaoAccessException.class)
+    public ResponseEntity<Object> handleDaoAccessException(DaoAccessException e) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(e.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleOtherException(Exception e) {
         return ResponseEntity
