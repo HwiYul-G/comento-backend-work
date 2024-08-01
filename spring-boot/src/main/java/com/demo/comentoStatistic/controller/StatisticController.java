@@ -9,8 +9,10 @@ import com.demo.comentoStatistic.utils.OrgConstraint;
 import com.demo.comentoStatistic.utils.YearMonthConstraint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RestController
 @RequestMapping("${spring.data.rest.base-path}/stats")
 @RequiredArgsConstructor
