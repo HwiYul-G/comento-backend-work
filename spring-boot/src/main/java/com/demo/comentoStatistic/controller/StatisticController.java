@@ -5,8 +5,12 @@ import com.demo.comentoStatistic.dto.external.out.LoginStatsResponseDto;
 import com.demo.comentoStatistic.dto.external.out.PostDeptStatsResponseDto;
 import com.demo.comentoStatistic.dto.external.out.PostStatsResponseDto;
 import com.demo.comentoStatistic.service.StatisticService;
+import com.demo.comentoStatistic.utils.YearMonthConstraint;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +21,9 @@ public class StatisticController {
     private final StatisticService statisticService;
 
     @GetMapping("/logins/{yearMonth}")
-    public ResponseEntity<LoginStatsResponseDto> getLoginStats(@PathVariable String yearMonth,
+    public ResponseEntity<LoginStatsResponseDto> getLoginStats(@PathVariable
+                                                               @YearMonthConstraint
+                                                               String yearMonth,
                                                                @RequestParam(required = false, name = "is-average")
                                                                boolean isAverage,
                                                                @RequestParam(required = false, name = "exclude-holiday")
@@ -28,19 +34,19 @@ public class StatisticController {
     }
 
     @GetMapping("/logins/{yearMonth}/{org}")
-    public ResponseEntity<LoginDeptStatsResponseDto> getLoginDeptStats(@PathVariable String yearMonth, @PathVariable String org) {
+    public ResponseEntity<LoginDeptStatsResponseDto> getLoginDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable String org) {
         LoginDeptStatsResponseDto loginDeptStatsResponseDto = statisticService.getLoginDeptStats(yearMonth, org);
         return ResponseEntity.ok(loginDeptStatsResponseDto);
     }
 
     @GetMapping("/posts/{yearMonth}")
-    public ResponseEntity<PostStatsResponseDto> getPostStats(@PathVariable String yearMonth) {
+    public ResponseEntity<PostStatsResponseDto> getPostStats(@PathVariable @YearMonthConstraint String yearMonth) {
         PostStatsResponseDto postStatsResponseDto = statisticService.getPostStats(yearMonth);
         return ResponseEntity.ok(postStatsResponseDto);
     }
 
     @GetMapping("/posts/{yearMonth}/{org}")
-    public ResponseEntity<PostDeptStatsResponseDto> getPostDeptStats(@PathVariable String yearMonth, @PathVariable String org) {
+    public ResponseEntity<PostDeptStatsResponseDto> getPostDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable String org) {
         PostDeptStatsResponseDto postDeptStatsResponseDto = statisticService.getPostDeptStats(yearMonth, org);
         return ResponseEntity.ok(postDeptStatsResponseDto);
     }
