@@ -27,7 +27,7 @@ class DaoAspectTest {
     void whenExecuteJoinPoint_thenDaoAccessExceptionIsThrown() throws Throwable {
         when(proceedingJoinPoint.proceed()).thenThrow(new RuntimeException());
 
-        assertThrows(DaoAccessException.class, ()-> daoAspect.daoBefore(proceedingJoinPoint));
+        assertThrows(DaoAccessException.class, ()-> daoAspect.daoAround(proceedingJoinPoint));
         verify(proceedingJoinPoint, times(1)).proceed();
     }
 
