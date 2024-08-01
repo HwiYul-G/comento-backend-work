@@ -5,12 +5,10 @@ import com.demo.comentoStatistic.dto.external.out.LoginStatsResponseDto;
 import com.demo.comentoStatistic.dto.external.out.PostDeptStatsResponseDto;
 import com.demo.comentoStatistic.dto.external.out.PostStatsResponseDto;
 import com.demo.comentoStatistic.service.StatisticService;
+import com.demo.comentoStatistic.utils.OrgConstraint;
 import com.demo.comentoStatistic.utils.YearMonthConstraint;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,7 +32,7 @@ public class StatisticController {
     }
 
     @GetMapping("/logins/{yearMonth}/{org}")
-    public ResponseEntity<LoginDeptStatsResponseDto> getLoginDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable String org) {
+    public ResponseEntity<LoginDeptStatsResponseDto> getLoginDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable @OrgConstraint String org) {
         LoginDeptStatsResponseDto loginDeptStatsResponseDto = statisticService.getLoginDeptStats(yearMonth, org);
         return ResponseEntity.ok(loginDeptStatsResponseDto);
     }
@@ -46,7 +44,7 @@ public class StatisticController {
     }
 
     @GetMapping("/posts/{yearMonth}/{org}")
-    public ResponseEntity<PostDeptStatsResponseDto> getPostDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable String org) {
+    public ResponseEntity<PostDeptStatsResponseDto> getPostDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable @OrgConstraint String org) {
         PostDeptStatsResponseDto postDeptStatsResponseDto = statisticService.getPostDeptStats(yearMonth, org);
         return ResponseEntity.ok(postDeptStatsResponseDto);
     }
