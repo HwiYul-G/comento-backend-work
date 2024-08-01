@@ -1,4 +1,4 @@
-package com.demo.comentoStatistic.dto.external;
+package com.demo.comentoStatistic.dto.external.in;
 
 import java.util.List;
 
