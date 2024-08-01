@@ -21,19 +21,19 @@
 
     <select id="getLoginCountByYearMonthAndTeam" parameterType="map" resultType="LoginDeptStatsDto">
         select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestCode as requestLog, u.HR_ORGAN as team
-        from statistic9.requestInfo ri left outer join statistic9.user as u on userID
+        from statistic9.requestInfo ri left outer join statistic9.user as u on u.userID
         where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestCode='L' and u.HR_ORGAN=#{team};
     </select>
 
     <select id="getPostCountByYearMonth" parameterType="string" resultType="PostStatsDto">
-        select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestLog as requestLog
+        select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestCode as requestLog
         from statistic9.requestInfo ri
-        where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestLog='WB';
+        where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestCode='WB';
     </select>
 
     <select id="getPostCountByYearMonthAndTeam" parameterType="map" resultType="PostDeptStatsDto">
-        select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestLog as requestLog, u.HR_ORGAN as team
-        from statistic9.requestInfo ri left outer join statistic9.user as u on userID
-        where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestLog='WB' and u.HR_ORGAN=#{team};
+        select concat(20, left(ri.createDate, 4)) as yearMonth, count(*) as totCnt, requestCode as requestLog, u.HR_ORGAN as team
+        from statistic9.requestInfo ri left outer join statistic9.user as u on u.userID
+        where concat(20, left(ri.createDate, 4))=#{yearMonth} and requestCode='WB' and u.HR_ORGAN=#{team};
     </select>
 </mapper>
