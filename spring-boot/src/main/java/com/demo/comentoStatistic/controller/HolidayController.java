@@ -24,7 +24,7 @@ public class HolidayController {
     */
 
     // http://localhost:8031/addHolidaysByYear?year=2022
-    @GetMapping("/addHolidaysByYear")
+    @GetMapping(value = "/addHolidaysByYear", produces = "application/json")
     public ResponseEntity<List<Holiday>> insertHolidaysByYear(@RequestParam String year){
         List<Holiday> holidays = holidayService.insertHolidaysByYear(year);
         return ResponseEntity.ok(holidays); // 값을 확인하기 위함

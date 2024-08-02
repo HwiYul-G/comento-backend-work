@@ -20,7 +20,7 @@ public class StatisticController {
 
     private final StatisticService statisticService;
 
-    @GetMapping("/logins/{yearMonth}")
+    @GetMapping(value = "/logins/{yearMonth}", produces = "application/json")
     public ResponseEntity<LoginStatsResponseDto> getLoginStats(@PathVariable
                                                                @YearMonthConstraint
                                                                String yearMonth,
@@ -33,19 +33,19 @@ public class StatisticController {
         return ResponseEntity.ok(loginStatsResponseDto);
     }
 
-    @GetMapping("/logins/{yearMonth}/{org}")
+    @GetMapping(value = "/logins/{yearMonth}/{org}", produces = "application/json")
     public ResponseEntity<LoginDeptStatsResponseDto> getLoginDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable @OrgConstraint String org) {
         LoginDeptStatsResponseDto loginDeptStatsResponseDto = statisticService.getLoginDeptStats(yearMonth, org);
         return ResponseEntity.ok(loginDeptStatsResponseDto);
     }
 
-    @GetMapping("/posts/{yearMonth}")
+    @GetMapping(value = "/posts/{yearMonth}", produces = "application/json")
     public ResponseEntity<PostStatsResponseDto> getPostStats(@PathVariable @YearMonthConstraint String yearMonth) {
         PostStatsResponseDto postStatsResponseDto = statisticService.getPostStats(yearMonth);
         return ResponseEntity.ok(postStatsResponseDto);
     }
 
-    @GetMapping("/posts/{yearMonth}/{org}")
+    @GetMapping(value = "/posts/{yearMonth}/{org}", produces = "application/json")
     public ResponseEntity<PostDeptStatsResponseDto> getPostDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable @OrgConstraint String org) {
         PostDeptStatsResponseDto postDeptStatsResponseDto = statisticService.getPostDeptStats(yearMonth, org);
         return ResponseEntity.ok(postDeptStatsResponseDto);
