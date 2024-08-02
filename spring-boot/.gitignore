@@ -32,5 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
-## setting
-*.properties
+## properties
+src/main/resources/application.properties
+.idea/workspace.xml
