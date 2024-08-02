@@ -30,6 +30,15 @@ public class ExceptionHandlerAdvice {
                 .body(errors);
     }
 
+    @ExceptionHandler(ExternalAPIException.class)
+    public ResponseEntity<Object> handleExternalAPIException(ExternalAPIException e){
+        e.getStackTrace();
+        return ResponseEntity
+                .status(e.getStatus())
+                .body(e.getMessage() + e.getResponseBody());
+    }
+
+
     @ExceptionHandler(DaoAccessException.class)
     public ResponseEntity<Object> handleDaoAccessException(DaoAccessException e) {
         e.getStackTrace();
