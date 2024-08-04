@@ -1,29 +1,54 @@
 package com.demo.comentoStatistic.controller;
 
-import com.demo.comentoStatistic.dto.YearCountDto;
+import com.demo.comentoStatistic.dto.external.out.LoginDeptStatsResponseDto;
+import com.demo.comentoStatistic.dto.external.out.LoginStatsResponseDto;
+import com.demo.comentoStatistic.dto.external.out.PostDeptStatsResponseDto;
+import com.demo.comentoStatistic.dto.external.out.PostStatsResponseDto;
 import com.demo.comentoStatistic.service.StatisticService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.demo.comentoStatistic.utils.OrgConstraint;
+import com.demo.comentoStatistic.utils.YearMonthConstraint;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@Validated
+@RestController
+@RequestMapping("${spring.data.rest.base-path}/stats")
+@RequiredArgsConstructor
 public class StatisticController {
-    @Autowired
-    StatisticService statisticService;
 
-    @RequestMapping(value = "/logins/{year}", produces = "application/json")
-    @ResponseBody
-    public ResponseEntity<YearCountDto> getYearLoginCount(@PathVariable("year") String year){
-        return ResponseEntity.ok(statisticService.getYearLogins(year));
+    private final StatisticService statisticService;
+
+    @GetMapping(value = "/logins/{yearMonth}", produces = "application/json")
+    public ResponseEntity<LoginStatsResponseDto> getLoginStats(@PathVariable
+                                                               @YearMonthConstraint
+                                                               String yearMonth,
+                                                               @RequestParam(required = false, name = "is-average")
+                                                               boolean isAverage,
+                                                               @RequestParam(required = false, name = "exclude-holiday")
+                                                               boolean excludeHoliday
+    ) {
+        LoginStatsResponseDto loginStatsResponseDto = statisticService.getLoginStats(yearMonth, isAverage, excludeHoliday);
+        return ResponseEntity.ok(loginStatsResponseDto);
     }
 
-    @RequestMapping(value = "/logins/{year}/{month}", produces = "application/json")
-    @ResponseBody
-    public Object getYearMonthLoginCount(@PathVariable("year") String year, @PathVariable("month") String month){
-        return ResponseEntity.ok(statisticService.getYearMonthLogins(year, month));
+    @GetMapping(value = "/logins/{yearMonth}/{org}", produces = "application/json")
+    public ResponseEntity<LoginDeptStatsResponseDto> getLoginDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable @OrgConstraint String org) {
+        LoginDeptStatsResponseDto loginDeptStatsResponseDto = statisticService.getLoginDeptStats(yearMonth, org);
+        return ResponseEntity.ok(loginDeptStatsResponseDto);
     }
+
+    @GetMapping(value = "/posts/{yearMonth}", produces = "application/json")
+    public ResponseEntity<PostStatsResponseDto> getPostStats(@PathVariable @YearMonthConstraint String yearMonth) {
+        PostStatsResponseDto postStatsResponseDto = statisticService.getPostStats(yearMonth);
+        return ResponseEntity.ok(postStatsResponseDto);
+    }
+
+    @GetMapping(value = "/posts/{yearMonth}/{org}", produces = "application/json")
+    public ResponseEntity<PostDeptStatsResponseDto> getPostDeptStats(@PathVariable @YearMonthConstraint String yearMonth, @PathVariable @OrgConstraint String org) {
+        PostDeptStatsResponseDto postDeptStatsResponseDto = statisticService.getPostDeptStats(yearMonth, org);
+        return ResponseEntity.ok(postDeptStatsResponseDto);
+    }
+
 }
