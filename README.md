@@ -13,3 +13,7 @@
 | 5 주차 | - 발표 세션                                                      |  | 
 
 ## 🏆 수료증
+
+이 문서와 코드는 KSY(HwiYul-G)에 의해 작성되었습니다. 클론 시 꼭 표기 부탁드립니다.
+ 
+This document and code were written by KSY(HwiYul-G). Please be sure to indicate this when cloning
